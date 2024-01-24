@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Communicating from Node.js to an Arduino</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+    <style>
+      @font-face {
+      font-family: 'Plain';
+      src: url(fonts/Plain-Medium.otf);
+    }
+
+
+    body {
+        margin: 0;
+        padding: 10px; /* Add 10px padding around the window */
+        display: flex;
+        justify-content: space-between;
+        gap: 40px;
+        font-family: 'Roboto', sans-serif;
+        font-weight: medium;
+    }
+
+    .rectangle {
+        width: 420px;
+        height: 610px;
+        background-color: #e6e6e6; /* Grey color */
+        padding: 20px; /* Add padding for content */
+        box-sizing: border-box; /* Include padding and border in the total width and height */
+    }
+
+    .rectangle img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    .rectangle p {
+        font-family: 'Roboto', sans-serif;
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+
+    .rectangle button {
+        font-family: 'Roboto', sans-serif;
+        padding: 0px;
+        margin: none;
+        font-size: 14px;
+        color: black; /* White text color */
+        border: none;
+        background-color: #e6e6e6;
+        cursor: pointer;
+    }
+    </style>
+  </head>
+  <body>
+
+    <div class="rectangle">
+      <p>THE NORTH FACE<br>Nylon Jacket<br>made in Milano</p>
+      <img src="https://raw.githubusercontent.com/maxbordogna/giorgia-s_clothes/main/img_01.png" 
+      alt="Image 1">
+      <p>Fr 149.-</p>
+      <button id="print1"><u>add to cart</u></button>
+  </div>
+
+  <div class="rectangle">
+      <p>CARHARTT<br> Cotton Long Sleeve T-Shirt<br>made in Zurich</p>
+      <img src="https://raw.githubusercontent.com/maxbordogna/giorgia-s_clothes/main/img_02.png" alt="Image 2">
+      <p>Fr 59.-</p>
+      <button id="print2"><u>add to cart</u></button>
+  </div>
+
+  <div class="rectangle">
+      <p>SHEIN<br> Polyester Crop Top<br>made in Vietnam</p>
+      <img src="https://raw.githubusercontent.com/maxbordogna/giorgia-s_clothes/main/img_03.png" alt="Image 3">
+      <p>Fr 12.-</p>
+      <button id="print3"><u>add to cart</u></button>
+  </div>
+    <script>
+      var socket = io();
+      document.getElementById("print1").onclick = function () {
+        socket.emit("lights", { status: "1" });
+        socket.emit("lights", { status: "1" });
+      };
+      document.getElementById("print2").onclick = function () {
+        socket.emit("lights", { status: "2" });
+        socket.emit("lights", { status: "2" });
+      };
+      document.getElementById("print3").onclick = function () {
+        socket.emit("lights", { status: "3" });
+        socket.emit("lights", { status: "3" });
+      };
+
+    </script>
+  </body>
+</html>

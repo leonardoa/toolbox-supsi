@@ -1,0 +1,14 @@
+Aprire node_to_arduino sulla sinistra
+Aprire tutta la cartella di Angelucci sulla destra
+Una volta collegato l'arduino, cliccare sulla finestra di node_to_arduino -> Tools -> collegare la porta con il mio Arduino -> guardare il numero -> scrivere lo stesso numero in visual studio code, in app.js nella riga 12
+
+SALVA TUTTO, RIAVVIA LA PAGINA
+CHECK E UPLOAD SU node_to_arduino
+APRIRE NUOVO TERMINALE
+
+
+1. Modificare la porta all'interno di app.js
+2. Aprire il terminale
+3. node app.js
+e poi aprire il file node_to_arduino dentro alla cartella di Angelucci
+4. Apri il browser alla link: http://localhost:3000/
