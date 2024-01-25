@@ -4,8 +4,7 @@ avantiButton.addEventListener("click", function(){
     window.location.href = "Pagina-1.html"
 })
 
-const BASE_URL_NOMINATIM = 'https://api.mapbox.com/geocoding/v5/mapbox.places/9.055550697500166,45.563576824324656.json?country=it&language=it&access_token=pk.eyJ1IjoibGlvbmVzc3kiLCJhIjoiY2xvd29kenFoMTZnNjJrcXdjdXV1d3RvNiJ9.9Mh9rJULy8FDYo0NMl9RwA';
-mapboxgl.accessToken = 'pk.eyJ1IjoibGlvbmVzc3kiLCJhIjoiY2xvd29kenFoMTZnNjJrcXdjdXV1d3RvNiJ9.9Mh9rJULy8FDYo0NMl9RwA';
+mapboxgl.accessToken = 'MAPBOX_KEY';
 const map = new mapboxgl.Map({
     container: 'map',
     zoom: 18,
