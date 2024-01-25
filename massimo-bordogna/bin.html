@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+
+<!-- ----------------- /HEAD ------------------- -->
+<head>
+
+	<!-- -- meta&link -- -->
+    <title>MailBox</title>
+    <meta name="description" content="CC – SUPSI 2022">
+    <meta name="keywords" content="Creative, Coding, SUPSI, 2023">
+    <meta name="web_author" content="Massimo Bordogna">
+    <meta name="copyright" content="Massimo Bordogna">
+    <meta name="author" content="Massimo Bordogna">
+    <meta charset="utf-8">
+	<meta name="copyright" content="2023">
+	<meta name="description" content="Finger Counting: pagina dedicata all'esplorazione del conteggio con le mani.">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="index.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+	<!-- -- /meta&link -- -->
+
+	<!-- -- CSS -- -->
+	<style>
+        *, *:before, *:after {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Roboto Mono', monospace;
+	font-weight: 100;
+	overflow: hidden;
+}
+
+
+
+/* Sidebar containing all the emails */
+#sidebar {
+	position: fixed;
+	background: black;
+	overflow-y: scroll;
+	width: 25%;
+	height: 95%;
+	bottom: 0;
+	left:0;
+
+}
+
+/* Content of the selected email */
+#content {
+	position: fixed;
+	background: whitesmoke;
+	overflow-y: scroll;
+	width: 75%;
+	height: 95%;
+	right: 0%;
+	bottom: 0;
+	padding-left: 100px;
+	padding-top: 10px;
+}
+
+/* Emails contained in the sidebar */
+.mail-item {
+	background-color: whitesmoke;
+	margin-bottom: 5px;
+	width: 98%;
+	padding: 10px;
+	margin-left: 1%;
+}
+
+.mail-item:hover {
+	background-color: black;
+	margin-bottom: 5px;
+	width: 98%;
+	padding: 10px;
+	color: whitesmoke;
+	margin-left: 1%;
+}
+
+.mail-item-attuale {
+	background-color: black;
+	margin-bottom: 5px;
+	width: 98%;
+	padding: 10px;
+	color: whitesmoke;
+	margin-left: 1%;
+}
+
+#mail-content {
+	background-color: whitesmoke;
+}
+
+/* Style of the button */
+.button {
+	background-color: black;
+	border: none;
+	color: white;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 25px;
+	margin: 4px 2px;
+	cursor: pointer;
+	font-weight: 100;
+
+  }
+
+  .button:hover {
+	background-color: whitesmoke;
+	border: none;
+	color: black;
+  }
+
+  /* Style of the navbar */
+  .navbar{
+	font-size: 25px;
+	font-weight: 100;
+	line-height: 1.5;
+	position: fixed;
+	width: 100%;
+	background-color: black;
+	border-bottom: solid 13px whitesmoke;
+	height: 6%;
+	margin-top: -0.5%;
+	margin-bottom: -0.4%;
+	margin-left: -0.7%;
+	margin-right: -0.4%;
+	padding-left: 10px;
+	padding-right: 5px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	left: 0.7%;
+}
+
+
+#send{
+	position: fixed;
+	right: 1%;
+	font-weight: 100;
+}
+
+a:link {
+	text-decoration: none;
+	color: whitesmoke;
+}
+
+a:visited {
+	text-decoration: none;
+	color: whitesmoke;
+}
+
+a:hover {
+	text-decoration: none;
+	color: black;
+	background-color: whitesmoke;
+	font-weight: 900;
+}
+
+.menu {
+	font-size: 25px;
+	font-weight: 100;
+	text-decoration: none;
+	color: whitesmoke;
+}
+
+.menu:hover {
+	text-decoration: none;
+	text-decoration: none;
+	color: black;
+	background-color: whitesmoke;
+	font-weight: 900;
+}
+
+
+#attuale {
+	color: black;
+	background-color: whitesmoke;
+	font-weight: 900;
+}
+
+
+
+p {
+	/*max-width: 30em;*/
+	font-weight: 100;
+	font-size: 16px;
+	margin:0px;
+	display: inline;
+	line-height: 20px;
+}
+
+h2 {
+	display:inline;
+	font-size: 25px;
+	font-weight: 900;
+	line-height: 0px;
+
+}
+h3 {
+	margin-top: 7px;
+	font-size: 16px;
+	font-weight: 900;
+	line-height: 5px;
+	
+}
+
+
+/* Style of the button delete */
+.delete {
+	position: relative;
+  	float: right;
+}
+
+.delete:hover {
+	color: black;
+	background-color: whitesmoke;
+	font-weight: 900;
+}
+
+      </style>
+	  <!-- -- /CSS -- -->
+</head>
+
+<!-- ----------------- /HEAD ------------------- -->
+
+
+<!-- ----------------- BODY ------------------- -->
+<body>
+
+	<!-- -- NAVBAR -- -->
+	<div class="navbar">
+		<a href="/">WRITE</a>
+		<a href="inbox">INBOX</a>
+		<a href="spam">SPAM</a>
+		<a href="sent">SENT</a>
+		<a href="draft">DRAFT</a>
+		<a class="menu" id="attuale" href="bin">BIN</a>
+		<p  id="send"> <button id="luminosityminus" class="button" type="button">    EMPTY </button></p>
+	</div>
+	<!-- -- /NAVBAR -- -->
+
+	<!-- -- SIDEBAR -- -->
+	<!-- List of all email contained in the page -->
+			<div id="sidebar">
+				<div class="mail-item-attuale">
+					<h2 id="hfisher">David Fisher</h2> <p class="delete" id="dfisher">DELETE</p>
+					<h3 id="ofisher">Upcoming Event Logistics</h3>
+					<p id="tfisher">I trust this message finds you well. I am reaching out to discuss a potential collaboration opportunity between our teams.</p>
+				</div></a>
+				<div class="mail-item">
+					<h2 id="hpatel">Natasha Patel </h2>  <p class="delete" id="dpatel">DELETE</p>
+					<h3 id="opatel">Urgent: Payment Confirmation Needed</h3>
+					<p id="tpatel">Greetings! Our teams could create wonders together. Coffee to chat about collaboration? Your innovative input is crucial.</p>
+				</div>
+				<div class="mail-item">
+					<h2 id="hpetrov">Yuri Petrov</h2>  <p class="delete" id="dpetrov">DELETE</p>
+					<h3 id="opetrov">Weekly Progress Report</h3>
+					<p id="tpetrov">Here you can find the report of the weekly progress we reached with the group of generative data progress in Chicago.</p>
+				</div>
+				<div class="mail-item">
+					<h2 id="hsilvia">Gabriela Silva</h2>  <p class="delete" id="dsilvia">DELETE</p>
+					<h3 id="osilvia">New Job Opportunity Inside</h3>
+					<p id="tsilvia">Bruce, I just want to tell you that there is an open jop opportunity that could be interesting for you and your team.</p>
+				</div>
+				<div class="mail-item">
+					<h2 id="htanaka">Hiroshi Tanaka</h2>  <p class="delete" id="dtanaka">DELETE</p>
+					<h3 id="otanaka">Moonshot Brainstorm Session</h3>
+					<p id="ttanaka">Tonight it is planned a moonshot brainstorm session, hope you guys will come all, see you in a couple of hours. Bye</p>
+				</div>
+				<div class="mail-item">
+					<h2 id="hsantoro">Alessandra Santoro</h2>  <p class="delete" id="dsantoro">DELETE</p>
+					<h3 id="osantoro">Tech Talk: Future-Forward Solutions</h3>
+					<p id="tsantoro">Tech Talk: Future-Forward Solutions is the title of the new conference programmed next month in Paris with all the press.</p>
+				</div>
+				<div class="mail-item">
+					<h2 id="hfredricksen">Carl Fredricksen</h2>  <p class="delete" id="dfredricksen">DELETE</p>
+					<h3 id="ofredricksen">Important Meeting Tomorrow</h3>
+					<p id="tfredricksen">Sorry to disturb you but just want to remind you the meeting we planned for tomorrow, I hope you'll be there, see you.</p>
+				</div>
+
+			</div>
+
+			<!-- -- CONTENT -- -->
+			<!-- Content of the selected email from the sidebar -->
+			<div id="content">
+				<div id="mail-content">
+					<h2>David Fisher</h2>
+					<h3>Object of the message</h3>
+					<br><br><p>	I trust this message finds you well. <br><br>
+					I am reaching out to discuss a potential collaboration opportunity between our teams. I sincerely hope that you are in good health and high spirits. In the spirit of fostering a closer connection, I am extending this communication to explore the exciting prospect of collaboration that exists between our respective teams. Your well-being is of utmost importance, and I trust that the current circumstances find you in good health.
+<br><br>
+This communication is an expression of my eagerness to engage in a meaningful dialogue regarding the possibility of our teams coming together for a collaborative venture. The potential for synergy between our teams is something that has captured my attention, and I believe that exploring this opportunity further could lead to mutually beneficial outcomes for both parties involved.
+Wishing you continued health and success.
+<br><br>
+Best regards,<br>
+David 
+						</p>
+				</div>
+			</body>
+<!-- ----------------- /BODY ------------------- -->
+
+<!-- ----------------- SCRIPT ------------------- -->
+			<!-- This script simply allows to "delete" the email desired by clicking on the delete button, this action puts a line-through over the text of the email and restore the luminosity of the screen by 1 step -->
+			<script>
+				dfisher.addEventListener("click", function () {
+					let socket = io();
+			const hfisher = document.getElementById("hfisher");
+			const ofisher = document.getElementById("ofisher");
+			const tfisher = document.getElementById("tfisher");
+			const mfisher = document.getElementById("mail-content")
+			hfisher.style.textDecoration = "line-through";
+			ofisher.style.textDecoration = "line-through";
+			tfisher.style.textDecoration = "line-through";
+			socket.emit('message', 'luminosityplus');
+			mfisher.style.color = "whitesmoke"
+})
+
+dpatel.addEventListener("click", function () {
+					let socket = io();
+			const hpatel = document.getElementById("hpatel");
+			const opatel = document.getElementById("opatel");
+			const tpatel = document.getElementById("tpatel");
+
+			hpatel.style.textDecoration = "line-through";
+			opatel.style.textDecoration = "line-through";
+			tpatel.style.textDecoration = "line-through";
+			socket.emit('message', 'luminosityplus');
+})
+
+dpetrov.addEventListener("click", function () {
+					let socket = io();
+			const hpetrov = document.getElementById("hpetrov");
+			const opetrov = document.getElementById("opetrov");
+			const tpetrov = document.getElementById("tpetrov");
+
+			hpetrov.style.textDecoration = "line-through";
+			opetrov.style.textDecoration = "line-through";
+			tpetrov.style.textDecoration = "line-through";
+			socket.emit('message', 'luminosityplus');
+})
+
+dsilvia.addEventListener("click", function () {
+					let socket = io();
+			const hsilvia = document.getElementById("hsilvia");
+			const osilvia = document.getElementById("osilvia");
+			const tsilvia = document.getElementById("tsilvia");
+
+			hsilvia.style.textDecoration = "line-through";
+			osilvia.style.textDecoration = "line-through";
+			tsilvia.style.textDecoration = "line-through";
+			socket.emit('message', 'luminosityplus');
+})
+
+dtanaka.addEventListener("click", function () {
+					let socket = io();
+			const htanaka = document.getElementById("htanaka");
+			const otanaka = document.getElementById("otanaka");
+			const ttanaka = document.getElementById("ttanaka");
+
+			htanaka.style.textDecoration = "line-through";
+			otanaka.style.textDecoration = "line-through";
+			ttanaka.style.textDecoration = "line-through";
+			socket.emit('message', 'luminosityplus');
+})
+
+dsantoro.addEventListener("click", function () {
+					let socket = io();
+			const hsantoro = document.getElementById("hsantoro");
+			const osantoro = document.getElementById("osantoro");
+			const tsantoro = document.getElementById("tsantoro");
+
+			hsantoro.style.textDecoration = "line-through";
+			osantoro.style.textDecoration = "line-through";
+			tsantoro.style.textDecoration = "line-through";
+			socket.emit('message', 'luminosityplus');
+})
+
+dfredricksen.addEventListener("click", function () {
+					let socket = io();
+			const hfredricksen = document.getElementById("hfredricksen");
+			const ofredricksen = document.getElementById("ofredricksen");
+			const tfredricksen = document.getElementById("tfredricksen");
+
+			hfredricksen.style.textDecoration = "line-through";
+			ofredricksen.style.textDecoration = "line-through";
+			tfredricksen.style.textDecoration = "line-through";
+			socket.emit('message', 'luminosityplus');
+})
+
+// This script allows only in the section "BIN" to delete all the emails together restring the screen luminosity by 7 steps
+send.addEventListener("click", function () {
+					let socket = io();
+			
+			const hfisher = document.getElementById("hfisher");
+			const ofisher = document.getElementById("ofisher");
+			const tfisher = document.getElementById("tfisher");
+			const mfisher = document.getElementById("mail-content")
+			hfisher.style.textDecoration = "line-through";
+			ofisher.style.textDecoration = "line-through";
+			tfisher.style.textDecoration = "line-through";
+			mfisher.style.color = "whitesmoke"
+
+			const hpatel = document.getElementById("hpatel");
+			const opatel = document.getElementById("opatel");
+			const tpatel = document.getElementById("tpatel");
+			hpatel.style.textDecoration = "line-through";
+			opatel.style.textDecoration = "line-through";
+			tpatel.style.textDecoration = "line-through";
+
+			const hpetrov = document.getElementById("hpetrov");
+			const opetrov = document.getElementById("opetrov");
+			const tpetrov = document.getElementById("tpetrov");
+			hpetrov.style.textDecoration = "line-through";
+			opetrov.style.textDecoration = "line-through";
+			tpetrov.style.textDecoration = "line-through";
+
+			const hsilvia = document.getElementById("hsilvia");
+			const osilvia = document.getElementById("osilvia");
+			const tsilvia = document.getElementById("tsilvia");
+			hsilvia.style.textDecoration = "line-through";
+			osilvia.style.textDecoration = "line-through";
+			tsilvia.style.textDecoration = "line-through";
+
+			const htanaka = document.getElementById("htanaka");
+			const otanaka = document.getElementById("otanaka");
+			const ttanaka = document.getElementById("ttanaka");
+			htanaka.style.textDecoration = "line-through";
+			otanaka.style.textDecoration = "line-through";
+			ttanaka.style.textDecoration = "line-through";	
+
+			const hsantoro = document.getElementById("hsantoro");
+			const osantoro = document.getElementById("osantoro");
+			const tsantoro = document.getElementById("tsantoro");
+			hsantoro.style.textDecoration = "line-through";
+			osantoro.style.textDecoration = "line-through";
+			tsantoro.style.textDecoration = "line-through";		
+
+			const hfredricksen = document.getElementById("hfredricksen");
+			const ofredricksen = document.getElementById("ofredricksen");
+			const tfredricksen = document.getElementById("tfredricksen");
+			hfredricksen.style.textDecoration = "line-through";
+			ofredricksen.style.textDecoration = "line-through";
+			tfredricksen.style.textDecoration = "line-through";
+			socket.emit('message', 'luminosityplus');
+			socket.emit('message', 'luminosityplus');
+			socket.emit('message', 'luminosityplus');
+			socket.emit('message', 'luminosityplus');
+			socket.emit('message', 'luminosityplus');
+			socket.emit('message', 'luminosityplus');
+			socket.emit('message', 'luminosityplus');
+})
+
+
+</script>
+
+<!-- ----------------- LINKS_SCRIPT ------------------- -->
+		
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.3/socket.io.js"></script>
+
+
+</html>

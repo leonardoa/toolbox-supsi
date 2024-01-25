@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+
+<!-- ----------------- HEAD ------------------- -->
+<head>
+
+	<!-- -- meta&link -- -->
+    <title>MailBox</title>
+    <meta name="description" content="CC – SUPSI 2022">
+    <meta name="keywords" content="Creative, Coding, SUPSI, 2023">
+    <meta name="web_author" content="Massimo Bordogna">
+    <meta name="copyright" content="Massimo Bordogna">
+    <meta name="author" content="Massimo Bordogna">
+    <meta charset="utf-8">
+	<meta name="copyright" content="2023">
+	<meta name="description" content="Finger Counting: pagina dedicata all'esplorazione del conteggio con le mani.">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="index.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+	<!-- -- /meta&link -- -->
+
+	<!-- -- CSS -- -->
+    <style>
+        *, *:before, *:after {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Roboto Mono', monospace;
+	font-weight: 100;
+	overflow: hidden;
+}
+
+
+
+/* Sidebar containing all the emails */
+#sidebar {
+	position: fixed;
+	background: black;
+	overflow-y: scroll;
+	width: 25%;
+	height: 95%;
+	bottom: 0;
+	left:0;
+
+}
+
+/* Content of the selected email */
+#content {
+	position: fixed;
+	background: whitesmoke;
+	overflow-y: scroll;
+	width: 75%;
+	height: 95%;
+	right: 0%;
+	bottom: 0;
+	padding-left: 100px;
+	padding-top: 10px;
+}
+
+/* Emails contained in the sidebar */
+.mail-item {
+	background-color: whitesmoke;
+	margin-bottom: 5px;
+	width: 98%;
+	padding: 10px;
+	margin-left: 1%;
+}
+
+.mail-item:hover {
+	background-color: black;
+	margin-bottom: 5px;
+	width: 98%;
+	padding: 10px;
+	color: whitesmoke;
+	margin-left: 1%;
+}
+
+.mail-item-attuale {
+	background-color: black;
+	margin-bottom: 5px;
+	width: 98%;
+	padding: 10px;
+	color: whitesmoke;
+	margin-left: 1%;
+}
+
+#mail-content {
+	background-color: whitesmoke;
+}
+
+/* Style of the button */
+.button {
+	background-color: black;
+	border: none;
+	color: white;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 25px;
+	margin: 4px 2px;
+	cursor: pointer;
+	font-weight: 100;
+
+  }
+
+  .button:hover {
+	background-color: whitesmoke;
+	border: none;
+	color: black;
+  }
+
+  /* Style of the navbar */
+  .navbar{
+	font-size: 25px;
+	font-weight: 100;
+	line-height: 1.5;
+	position: fixed;
+	width: 100%;
+	background-color: black;
+	border-bottom: solid 13px whitesmoke;
+	height: 6%;
+	margin-top: -0.5%;
+	margin-bottom: -0.4%;
+	margin-left: -0.7%;
+	margin-right: -0.4%;
+	padding-left: 10px;
+	padding-right: 5px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	left: 0.7%;
+}
+
+
+#send{
+	position: fixed;
+	right: 1%;
+	font-weight: 100;
+}
+
+a:link {
+	text-decoration: none;
+	color: whitesmoke;
+}
+
+a:visited {
+	text-decoration: none;
+	color: whitesmoke;
+}
+
+a:hover {
+	text-decoration: none;
+	color: black;
+	background-color: whitesmoke;
+	font-weight: 900;
+}
+
+.menu {
+	font-size: 25px;
+	font-weight: 100;
+	text-decoration: none;
+	color: whitesmoke;
+}
+
+.menu:hover {
+	text-decoration: none;
+	text-decoration: none;
+	color: black;
+	background-color: whitesmoke;
+	font-weight: 900;
+}
+
+
+#attuale {
+	color: black;
+	background-color: whitesmoke;
+	font-weight: 900;
+}
+
+
+
+p {
+	/*max-width: 30em;*/
+	font-weight: 100;
+	font-size: 16px;
+	margin:0px;
+	display: inline;
+	line-height: 20px;
+}
+
+h2 {
+	display:inline;
+	font-size: 25px;
+	font-weight: 900;
+	line-height: 0px;
+
+}
+h3 {
+	margin-top: 7px;
+	font-size: 16px;
+	font-weight: 900;
+	line-height: 5px;
+	
+}
+
+
+/* Style of the button delete */
+.delete {
+	position: relative;
+  	float: right;
+}
+
+.delete:hover {
+	color: black;
+	background-color: whitesmoke;
+	font-weight: 900;
+}
+
+      </style>
+	  <!-- -- /CSS -- -->
+
+</head>
+<!-- ----------------- /HEAD ------------------- -->
+
+<!-- ----------------- BODY ------------------- -->	
+<body>
+
+	<!-- -- NAVBAR -- -->
+<div class="navbar">
+	<a href="/">WRITE</a>
+	<a href="inbox">INBOX</a>
+	<a href="spam">SPAM</a>
+	<a class="menu" id="attuale" href="sent">SENT</a>
+	<a href="draft">DRAFT</a>
+	<a href="bin">BIN</a>
+</div>
+<!-- -- /NAVBAR -- -->
+
+<!-- -- SIDEBAR -- -->
+<!-- List of all email contained in the page -->
+			<div id="sidebar">
+				<div class="mail-item-attuale">
+					<h2 id="hfisher">To: Raul Fernandez</h2> <p class="delete" id="dfisher">DELETE</p>
+					<h3 id="ofisher">Meeting Request for Project Collaboration</h3>
+					<p id="tfisher">Hey Raul, I need to talk to you for a new project we are trying to create with you and your partner.</p>
+				</div></a>
+				<div class="mail-item">
+					<h2 id="hpatel">To: Kairos Nkosi </h2>  <p class="delete" id="dpatel">DELETE</p>
+					<h3 id="opatel">Follow-Up on Job Application Status</h3>
+					<p id="tpatel">Mr Nkosi, I'm very pleased to announce you that you have been selected as a new member of our industry.</p>
+				</div>
+				<div class="mail-item">
+					<h2 id="hpetrov">To: Anaya Vasquez</h2>  <p class="delete" id="dpetrov">DELETE</p>
+					<h3 id="opetrov">Reminder: Upcoming Team Building Event</h3>
+					<p id="tpetrov">Anaya, just to remind you that next week there is the team building event that we do every year.</p>
+				</div>
+				<div class="mail-item">
+					<h2 id="hsilvia">To: Mateo Costa </h2>  <p class="delete" id="dsilvia">DELETE</p>
+					<h3 id="osilvia">Crucial Updates: Regulatory Compliance</h3>
+					<p id="tsilvia">Mateo, there is a problem, we received some emails with various compliances about what you did last month.</p>
+				</div>
+				<div class="mail-item">
+					<h2 id="htanaka">To: Sofia D'Alessio </h2>  <p class="delete" id="dtanaka">DELETE</p>
+					<h3 id="otanaka">Executive Briefing on Financial Report</h3>
+					<p id="ttanaka">Hi Sofia, I think that a quick brief on the financial report of last year's incomes would be great.</p>
+				</div>
+				<div class="mail-item">
+					<h2 id="hdubois">To: Aisling Dubois </h2>  <p class="delete" id="ddubois">DELETE</p>
+					<h3 id="odubois">Exploring Synergies for a Partnership</h3>
+					<p id="tdubois">Good Evening Mr. Dubois, I'm honored to write you an email and I really appreciate the time you are dedicating.</p>
+				</div>
+				<div class="mail-item">
+					<h2 id="hwiss">To: Zara Wiss </h2>  <p class="delete" id="dwiss">DELETE</p>
+					<h3 id="owiss">Planning business trip - Dubai</h3>
+					<p id="twiss">Hi everyone, I am planning a new trip in Dubai for the entire company staff, are you interested to partecipate?</p>
+				</div>
+			</div>
+
+			<!-- -- CONTENT -- -->
+			<!-- Content of the selected email from the sidebar -->
+			<div id="content">
+				<div id="mail-content">
+					<h2>To: Raul Fernandez</h2>
+					<h3>Meeting Request for Project Collaboration</h3>
+					<br><br><p>
+						Hey Raul, I need to talk to you for a new project we are trying to create with you and your partner.
+						<br><br>
+
+						Could we schedule a meeting at your earliest convenience to delve deeper into the details, explore potential synergies, and address any questions you might have?
+
+						Looking forward to your positive response and the prospect of working together on this exciting endeavor.
+						<br><br>
+						Best regards,
+						<br><br>
+
+						</p>
+				</div>
+			</body>
+<!-- ----------------- /BODY ------------------- -->
+
+<!-- ----------------- SCRIPT ------------------- -->
+<!-- This script simply allows to "delete" the email desired by clicking on the delete button, this action puts a line-through over the text of the email and restore the luminosity of the screen by 1 step -->
+			<script>
+				dfisher.addEventListener("click", function () {
+					let socket = io();
+			const hfisher = document.getElementById("hfisher");
+			const ofisher = document.getElementById("ofisher");
+			const tfisher = document.getElementById("tfisher");
+			const mfisher = document.getElementById("mail-content")
+			hfisher.style.textDecoration = "line-through";
+			ofisher.style.textDecoration = "line-through";
+			tfisher.style.textDecoration = "line-through";
+			socket.emit('message', 'luminosityplus');
+			mfisher.style.color = "whitesmoke"
+})
+
+dpatel.addEventListener("click", function () {
+					let socket = io();
+			const hpatel = document.getElementById("hpatel");
+			const opatel = document.getElementById("opatel");
+			const tpatel = document.getElementById("tpatel");
+
+			hpatel.style.textDecoration = "line-through";
+			opatel.style.textDecoration = "line-through";
+			tpatel.style.textDecoration = "line-through";
+			socket.emit('message', 'luminosityplus');
+})
+
+dpetrov.addEventListener("click", function () {
+					let socket = io();
+			const hpetrov = document.getElementById("hpetrov");
+			const opetrov = document.getElementById("opetrov");
+			const tpetrov = document.getElementById("tpetrov");
+
+			hpetrov.style.textDecoration = "line-through";
+			opetrov.style.textDecoration = "line-through";
+			tpetrov.style.textDecoration = "line-through";
+			socket.emit('message', 'luminosityplus');
+})
+
+dsilvia.addEventListener("click", function () {
+					let socket = io();
+			const hsilvia = document.getElementById("hsilvia");
+			const osilvia = document.getElementById("osilvia");
+			const tsilvia = document.getElementById("tsilvia");
+
+			hsilvia.style.textDecoration = "line-through";
+			osilvia.style.textDecoration = "line-through";
+			tsilvia.style.textDecoration = "line-through";
+			socket.emit('message', 'luminosityplus');
+})
+
+dtanaka.addEventListener("click", function () {
+					let socket = io();
+			const htanaka = document.getElementById("htanaka");
+			const otanaka = document.getElementById("otanaka");
+			const ttanaka = document.getElementById("ttanaka");
+
+			htanaka.style.textDecoration = "line-through";
+			otanaka.style.textDecoration = "line-through";
+			ttanaka.style.textDecoration = "line-through";
+			socket.emit('message', 'luminosityplus');
+})
+
+ddubois.addEventListener("click", function () {
+					let socket = io();
+			const hdubois = document.getElementById("hdubois");
+			const odubois = document.getElementById("odubois");
+			const tdubois = document.getElementById("tdubois");
+
+			hdubois.style.textDecoration = "line-through";
+			odubois.style.textDecoration = "line-through";
+			tdubois.style.textDecoration = "line-through";
+			socket.emit('message', 'luminosityplus');
+})
+
+dwiss.addEventListener("click", function () {
+					let socket = io();
+			const hwiss = document.getElementById("hwiss");
+			const owiss = document.getElementById("owiss");
+			const twiss = document.getElementById("twiss");
+
+			hwiss.style.textDecoration = "line-through";
+			owiss.style.textDecoration = "line-through";
+			twiss.style.textDecoration = "line-through";
+			socket.emit('message', 'luminosityplus');
+})
+
+
+
+</script>
+
+<!-- ----------------- LINKS_SCRIPT ------------------- -->
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.3/socket.io.js"></script>
+
+
+</html>
