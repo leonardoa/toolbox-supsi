@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="minimal-ui, width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> -->
+    <meta name="viewport" content="width=body-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#FFCE32">
+    <meta name="msapplication-navbutton-color" content="#FFCE32">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#FFCE32">
+    <link href=" src/style.css" rel="stylesheet" />
+    <link rel="icon" href="src/icona.png" />
+    <title>WalkStory</title>
+</head>
+
+<body id="body">
+    <div id="detail""><button id="close">close</button>
+        <div id="h1">Your story begins</div>
+
+        <div class="loadingDots">
+            <span class="dot" id="dot1"></span>
+            <span class="dot" id="dot2"></span>
+            <span class="dot" id="dot3"></span>
+        </div>
+
+        <div id="generatedText"></div>
+
+        <div id="buttonGroup">
+
+            <span id="button5" onclick="speak()">speak</span>
+
+            <div id="buttonContainer">
+                <span id="button4" onclick="nextChapter()">NEXT CHAPTER</span>
+                <span id="button3" onclick="finishStory()">FINISH STORY</span>
+            </div>  
+        </div>
+    </div>
+    <h2 id="h2">
+        WalkStory
+    </h2>
+
+    <h1 id="h1">
+        What story is yours today?
+    </h1>
+    <div id="flex">
+        TELL ME A
+        <span class="button gen" style="margin-left: 10px;">DETECTIVE</span>
+        <span class="button gen">ROMANCE</span>
+        <span class="button gen">THRILLER</span>
+        <span class="button gen">HORROR</span>
+        <span class="button gen">NOVEL</span>
+        <span class="button gen">ADVENTURE</span>
+        <span class="button gen">FANTASY</span>
+        <span class="button gen">MISTERY</span>
+        <span class="button gen">DYSTOPIAN</span>
+        <span class="button gen">DRAMA</span>
+    </div>
+    <div id="flex">
+        STORY, SET IN THE
+    </div>
+    <div id="slider-container">
+        <input type="range" id="year" name="year" min="1000" max="3000" step="100" value="100">
+        <span id="current-value">1000's</span>
+        <span id="label_left">1000's</span>
+        <span id="label_right">3000's</span>
+    </div>
+    <p id="address"></p>
+    <div id="flex">
+        <span id="button2" onclick="getCurrentLocation()">START WALKING!</span>
+    </div>
+
+</body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="src/app_1.js"></script>
+<script src="src/app.js"></script>
+
+</html>
