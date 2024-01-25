@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Animate the camera along a path</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
+    <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
+    <link rel="stylesheet" href="src/style.css">
+   <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#FF3030">
+
+</head>
+
+<body>
+    <audio id="backgroundMusic" src="src/allarm.mp3" loop style="display: none;" controls="none"></audio>
+
+    <div id="map">
+        <div class="sidebar flex-center left collapsed anim">
+            <div class="rounded-rect sidebar-content flex-center">
+                <p style="font-size: 75px; margin-left: 25px;">😱</p>
+                <div>
+                    <h2>OH NO!</h2>
+                    <p style="margin: 0; font-size: 26px; line-height: 30px; font-weight: 600; ">Your ex is getting getting closer!</p>
+                </div>
+            </div>
+        </div>
+        <div class="suggerimento anim">
+            <p style="font-size: 26px; font-weight: 500;">Advice:</p>
+            <p id="testo">Put on a wig and turn right!</p>
+        </div>
+        <div class="bottom-button">
+            <button id="avanti">Start path</button>
+        </div>
+    </div>
+</body>
+<script src="src/Target.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Ottieni l'elemento audio
+        const backgroundMusic = document.getElementById('backgroundMusic');
+
+        // Verifica se è stata un'interazione utente prima di avviare la riproduzione
+        document.addEventListener('click', function() {
+            if (backgroundMusic.paused) {
+                backgroundMusic.play();
+            }
+        });
+    });
+</script>
+
+<script>
+// Lista di frasi divertenti
+const frasiDivertenti = [
+    "The next taxi to the island of happiness leaves in five minutes. Run!",
+    "Make a left turn to avoid the awkward encounter!",
+    "Change direction to the left and fly away!",
+    "the opposite of luck is approaching. Turn right to evade!",
+    "There's a secret party on the right. Leave the memories on the left and join in!"
+];
+
+// Funzione per ottenere casualmente una frase dalla lista
+function ottieniFraseCasuale() {
+    const indiceCasuale = Math.floor(Math.random() * frasiDivertenti.length);
+    return frasiDivertenti[indiceCasuale];
+}
+
+// Funzione per impostare il testo sulla pagina
+function impostaTesto() {
+    const testoElement = document.getElementById('testo');
+    testoElement.innerText = ottieniFraseCasuale();
+}
+
+// Esegui la funzione all'avvio della pagina
+impostaTesto();
+
+</script>
+
+</html>
