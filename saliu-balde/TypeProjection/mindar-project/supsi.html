@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+        @font-face {
+            font-family: 'ABCMarist-Black-Trial';
+            src: url('ABCMarist-Black-Trial.woff2') format('woff2'),
+                 url('ABCMarist-Black-Trial.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: rgb(0, 255, 0);
+            transition: background-color 1.5s ease-out;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .content-container {
+            position: relative;
+            z-index: 1;
+        }
+
+        #introGif {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 1;
+            transition: opacity 1.5s ease-out;
+        }
+
+        .button-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 2; /* Set a higher z-index for the buttons */
+        }
+
+        .colonna,
+        .tubo,
+        .back,
+        .fire {
+            font-family: 'ABCMarist-Black-Trial', sans-serif;
+            font-size: 30px; /* Set the desired font size */
+            transition: color 0.3s ease-out; /* Add a transition effect for color change */
+        }
+
+        .back {
+            font-size: 20px; /* Set a smaller font size for the BACK button */
+        }
+
+        a {
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+            margin: 1px; /* Adjust the margin to make the buttons extremely close */
+            display: none; /* Initially hide the buttons */
+            cursor: pointer;
+        }
+
+        hr {
+            width: 100%; /* Extend the line to the right border of the page */
+            border: 1px solid black;
+            margin: 1px 0; /* Adjust the margin as needed */
+            opacity: 0;
+        }
+
+        .line-above,
+        .line-below {
+            width: 100%;
+            border: 1px solid black;
+            margin: 1px 0;
+            opacity: 0;
+        }
+
+        /* Hover effect for buttons */
+        .colonna:hover,
+        .tubo:hover,
+        .back:hover,
+        .fire:hover {
+            color: white; /* Change text color to white on hover */
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var introGif = document.getElementById("introGif");
+            var buttons = document.querySelectorAll('.button-container a, .line-above, .line-below');
+            var lines = document.querySelectorAll('.button-container hr, .line-above, .line-below');
+
+            // Set the current time to 0 to ensure the GIF starts from the beginning
+            introGif.currentTime = 0;
+
+            setTimeout(function () {
+                introGif.style.opacity = 0;
+
+                setTimeout(function () {
+                    introGif.src = "intro.gif";
+
+                    // Display the buttons and lines
+                    buttons.forEach(function (button, index) {
+                        button.style.display = 'block';
+                        lines[index].style.opacity = 1;
+                        // Add a click event listener to redirect to the specified URL
+                        if (button.tagName === 'A') {
+                            button.addEventListener('click', function () {
+                                window.location.href = button.getAttribute('href');
+                            });
+                        }
+                    });
+
+                }, 1500);
+
+                document.body.style.backgroundColor = 'rgb(0, 255, 0)';
+            }, 1000);
+
+            // Start the perpetual random background color change
+            setInterval(randomBackgroundColor, 5000); // Change color every 5 seconds
+
+            // Function to generate a random fluorescent color
+            function getRandomFluorescentColor() {
+                var hue = Math.floor(Math.random() * 360);
+                return 'hsl(' + hue + ', 100%, 50%)';
+            }
+
+            // Function to change the background color randomly and slowly
+            function randomBackgroundColor() {
+                var newColor = getRandomFluorescentColor();
+
+                // Transition the background color over 5 seconds
+                document.body.style.transition = 'background-color 5s ease';
+                document.body.style.backgroundColor = newColor;
+
+                // Reset the transition property after the transition ends
+                setTimeout(function () {
+                    document.body.style.transition = '';
+                }, 5000);
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div class="content-container">
+        <!-- Image element to display intro.gif -->
+        <img id="introGif" src="intro.gif" alt="Intro GIF">
+
+        <!-- Button container -->
+        <div class="button-container">
+            <!-- Horizontal line above the first button -->
+            <div class="line-above"></div>
+
+            <!-- Buttons and lines (hidden initially) -->
+            <a href="colonna_index.html" class="colonna">[Column]</a>
+            <hr>
+            <a href="tubo_index.html" class="tubo">[Tube]</a>
+            <hr>
+            <a href="fuoco_index.html" class="fire">[Fire Extinguisher]</a>
+            <hr>
+
+            <!-- Horizontal line below the last button -->
+            <a href="index.html" class="back">[BACK]</a>
+        </div>
+    </div>
+</body>
+
+</html>

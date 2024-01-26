@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+        @font-face {
+            font-family: 'ABCGravityVariable-Trial';
+            src: url('ABCGravityVariable-Trial.woff2') format('woff2'),
+                 url('ABCGravityVariable-Trial.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ABCArizonaPlusVariable-Trial';
+            src: url('ABCArizonaPlusVariable-Trial.woff2') format('woff2'),
+                 url('ABCArizonaPlusVariable-Trial.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ABCAsfaltVariableVF-Trial';
+            src: url('ABCAsfaltVariableVF-Trial.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ABCMaxiPlusVariable-Trial';
+            src: url('ABCMaxiPlusVariable-Trial.woff2') format('woff2'),
+                 url('ABCMaxiPlusVariable-Trial.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ABCGintoNordWidthsVariable-Trial';
+            src: url('ABCGintoNordWidthsVariable-Trial.woff2') format('woff2'),
+                 url('ABCGintoNordWidthsVariable-Trial.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ABCMarist-Black-Trial';
+            src: url('ABCMarist-Black-Trial.woff2') format('woff2'),
+                 url('ABCMarist-Black-Trial.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: rgb(0, 255, 0);
+            transition: background-color 1.5s ease-out;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .content-container {
+            position: relative;
+            z-index: 1;
+        }
+
+        #introGif {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 1;
+            transition: opacity 1.5s ease-out;
+        }
+
+        .button-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 2; /* Set a higher z-index for the buttons */
+        }
+
+        .gravity,
+        .arizona,
+        .asfalt,
+        .maxi,
+        .ginto,
+        .back {
+            font-size: 30px; /* Set the desired font size */
+            transition: color 0.3s ease-out; /* Add a transition effect for color change */
+        }
+
+        .gravity {
+            font-family: 'ABCGravityVariable-Trial', sans-serif;
+            animation: gravityAnimation 2s infinite alternate ease-in-out; /* Add animation to the "Gravity" button */
+        }
+
+        .arizona,
+        .asfalt,
+        .maxi {
+            font-family: 'ABCArizonaPlusVariable-Trial', sans-serif;
+            animation: arizonaasfaltmaxiAnimation 2s infinite alternate ease-in-out; /* Add animation to the second, third, and fourth buttons */
+        }
+
+        .asfalt,
+        .maxi,
+        .ginto {
+            font-family: 'ABCAsfaltVariableVF-Trial', sans-serif;
+            animation: arizonaasfaltmaxiAnimation 2s infinite alternate ease-in-out; /* Add animation to the third, fourth, and fifth buttons */
+        }
+
+        .maxi,
+        .ginto,
+        .back {
+            font-family: 'ABCMaxiPlusVariable-Trial', sans-serif;
+            animation: arizonaasfaltmaxiAnimation 2s infinite alternate ease-in-out; /* Add animation to the fourth and fifth buttons */
+        }
+
+        .ginto {
+            font-family: 'ABCGintoNordWidthsVariable-Trial', sans-serif;
+            animation: gintoAnimation 2s infinite alternate ease-in-out; /* Add animation to the "Ginto" button */
+        }
+
+        .back {
+            font-family: 'ABCMarist-Black-Trial', sans-serif;
+            font-size: 20px; 
+        }
+
+        a {
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+            margin: 1px; /* Adjust the margin to make the buttons extremely close */
+            display: none; /* Initially hide the buttons */
+            cursor: pointer;
+        }
+
+        hr {
+            width: 100%; /* Extend the line to the right border of the page */
+            border: 1px solid black;
+            margin: 1px 0; /* Adjust the margin as needed */
+            opacity: 0;
+        }
+
+        .line-above,
+        .line-below {
+            width: 100%;
+            border: 1px solid black;
+            margin: 1px 0;
+            opacity: 0;
+        }
+
+        @keyframes gravityAnimation {
+            0% {
+                font-variation-settings: 'wdth' 150, 'slnt' -16;
+            }
+            100% {
+                font-variation-settings: 'wdth' 50, 'slnt' 0;
+            }
+        }
+
+        @keyframes arizonaasfaltmaxiAnimation {
+            0% {
+                font-variation-settings: 'wdth' 50, 'wght' 200, 'slnt' -14, 'SRFF' 0, 'MONO' 0;
+            }
+            100% {
+                font-variation-settings: 'wdth' 150, 'wght' 700, 'slnt' 0, 'SRFF' 1, 'MONO' 1;
+            }
+        }
+
+        @keyframes gintoAnimation {
+            0% {
+                font-variation-settings: 'wdth' 75, 'wght' 100, 'slnt' -12;
+            }
+            100% {
+                font-variation-settings: 'wdth' 100, 'wght' 900, 'slnt' 0;
+            }
+        }
+
+        /* Hover effect for buttons */
+        .gravity:hover,
+        .arizona:hover,
+        .asfalt:hover,
+        .maxi:hover,
+        .ginto:hover,
+        .back:hover {
+            color: white; /* Change text color to white on hover */
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var introGif = document.getElementById("introGif");
+            var buttons = document.querySelectorAll('.button-container a, .line-above, .line-below');
+            var lines = document.querySelectorAll('.button-container hr, .line-above, .line-below');
+
+            // Set the current time to 0 to ensure the GIF starts from the beginning
+            introGif.currentTime = 0;
+
+            setTimeout(function () {
+                introGif.style.opacity = 0;
+
+                setTimeout(function () {
+                    introGif.src = "intro.gif";
+
+                    // Display the buttons and lines
+                    buttons.forEach(function (button, index) {
+                        button.style.display = 'block';
+                        lines[index].style.opacity = 1;
+                        // Add a click event listener to redirect to the specified URL
+                        if (button.tagName === 'A') {
+                            button.addEventListener('click', function (event) {
+                                event.preventDefault(); // Prevent the default behavior of the link
+                                if (button.classList.contains('back')) {
+                                    history.back();
+                                } else {
+                                    window.location.href = button.getAttribute('href');
+                                }
+                            });
+                        }
+                    });
+
+                }, 1500);
+
+                document.body.style.backgroundColor = 'rgb(0, 255, 0)';
+            }, 1000);
+
+            // Start the perpetual random background color change
+            setInterval(randomBackgroundColor, 5000); // Change color every 5 seconds
+
+            // Function to generate a random fluorescent color
+            function getRandomFluorescentColor() {
+                var hue = Math.floor(Math.random() * 360);
+                return 'hsl(' + hue + ', 100%, 50%)';
+            }
+
+            // Function to change the background color randomly and slowly
+            function randomBackgroundColor() {
+                var newColor = getRandomFluorescentColor();
+
+                // Transition the background color over 5 seconds
+                document.body.style.transition = 'background-color 5s ease';
+                document.body.style.backgroundColor = newColor;
+
+                // Reset the transition property after the transition ends
+                setTimeout(function () {
+                    document.body.style.transition = '';
+                }, 5000);
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div class="content-container">
+        <!-- Image element to display intro.gif -->
+        <img id="introGif" src="intro.gif" alt="Intro GIF">
+
+        <!-- Button container -->
+        <div class="button-container">
+            <!-- Horizontal line above the first button -->
+            <div class="line-above"></div>
+                        <!-- Buttons and lines (hidden initially) -->
+                        <a href="fuoco_gravity.html" class="gravity">[1] Gravity</a>
+                        <hr>
+                        <a href="fuoco_maxi.html" class="maxi">[2] Maxi</a>
+                        <hr>
+                        <a href="fuoco_arizona.html" class="arizona">[3] Arizona</a>
+                        <hr>
+                        <a href="fuoco_asfalt.html" class="asfalt">[4] Asfalt</a>
+                        <hr>
+                        <a href="fuoco_ginto.html" class="ginto">[5] Ginto</a>
+            
+                    
+                        <hr>
+                        <a href="supsi.html" class="back">[Back] </a>
+            
+                        <a href="#" class="back">[Back]</a>
+                    </div>
+                </div>
+            </body>
+            
+            </html>
+            
