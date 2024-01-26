@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DREAM IMAGER</title>
+  <!-- css style file link -->
+  <link rel="stylesheet" href="src/style.css">
+  <link rel="stylesheet" href="https://use.typekit.net/cih6cez.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  
+  <div id="container">
+
+    <div class="wrapper">
+
+      <!-- time display -->
+      <h1>00:00:00 PM</h1>
+      <div class="content">
+
+        <!-- column for the time -->
+        <div class="column">
+
+          <!-- drop-down menu for selecting hours -->
+          <select>
+          <option value="Hour" selected hidden>Hour</option>
+          </select>
+        </div>
+    
+        <!-- drop-down menu for selecting minutes -->
+        <div class="column">
+          <select>
+          <option value="Minute" selected hidden>Minute</option>
+          </select>
+        </div>
+    
+        <!-- drop-down menu for AM/PM -->
+        <div class="column">
+          <select>
+          <option value="AM/PM" selected hidden>AM/PM</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- button to set alarm clock -->
+      <button class="pulsante">Set Alarm</button>
+    </div>
+
+    <!-- footer with navigation at the bottom -->
+    <footer class="bottom-navigation">
+        <nav>
+            <ul>
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="alarm.html">Alarm</a></li>
+            </ul>
+        </nav>
+    </footer>
+</div>
+
+  <!-- js script link -->
+  <script src="src/alarm.js"></script>
+
+</body>
+</html>
