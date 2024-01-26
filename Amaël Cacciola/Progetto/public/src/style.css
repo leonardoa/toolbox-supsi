@@ -1,0 +1,125 @@
+body {
+  margin: 0;  
+  padding: 0;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: #2D2D2D;
+  color: #f4f4f4;
+}
+
+.header {
+  text-align: flex-start;
+  background-color: #2D2D2D;
+  color: #f4f4f4;
+  padding: 20px 0;
+  margin-left: 30px;
+}
+
+.title {
+  
+  font-size: 3em;
+  margin: 0;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.camera-section {
+  
+  margin-bottom: 170px;
+  align-items: center;
+}
+
+.horizontal-line {
+  display: flex;
+  align-items: flex-end;
+  /* justify-content: center; */
+  margin-bottom: 130px;
+}
+
+.horizontal-text {
+  color: #f4f4f4;
+  margin-right: 250px; /* Aumentato lo spazio tra le scritte */
+  font-size: 1.0em;
+}
+
+.description {
+  color: #f4f4f4;
+}
+
+.date-time-section {
+  /* color :#f4f4f4; */
+  text-align: right;
+  /* margin-bottom: 50px; */
+  /* margin-left: 1200px; */
+  /* margin-top: 20px; Aggiunto spazio sopra la sezione della data */
+}
+
+/* Aggiungi queste nuove regole CSS */
+.green-filter {
+  filter: brightness(100%) hue-rotate(120deg); /* Filtra la telecamera in verde */
+}
+
+.red-filter {
+  filter: brightness(100%) hue-rotate(-20deg) saturate(200%); /* Filtra la telecamera in rosso */
+}
+
+
+#canvas {
+  display: none;
+}
+
+/* Stili per schermi di dimensioni inferiori o uguali a 768px */
+@media only screen and (max-width: 768px) {
+  .header {
+    margin-left: 10px; /* Riduci il margine sinistro dell'header */
+  }
+
+  .title {
+    font-size: 2em; /* Riduci la dimensione del titolo */
+  }
+
+  .horizontal-line {
+    flex-direction: column; /* Disponi le scritte in verticale */
+    align-items: flex-start; /* Allinea le scritte a sinistra */
+    margin-bottom: 50px; /* Riduci lo spazio tra le sezioni */
+  }
+
+  .horizontal-text {
+    margin-right: 0; /* Rimuovi il margine destro delle scritte */
+    margin-bottom: 10px; /* Aggiungi spazio tra le scritte verticali */
+    font-size: 0.8em; /* Riduci la dimensione del testo */
+  }
+
+  .main {
+    padding: 10px; /* Riduci il padding principale */
+  }
+}
+
+/* Stili per schermi di dimensioni comprese tra 769px e 1024px */
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+  .header {
+    margin-left: 20px; /* Modifica il margine sinistro dell'header */
+  }
+
+  .title {
+    font-size: 2.5em; /* Modifica la dimensione del titolo */
+  }
+
+  .horizontal-line {
+    margin-bottom: 100px; /* Modifica lo spazio tra le sezioni */
+  }
+
+  .horizontal-text {
+    font-size: 1em; /* Modifica la dimensione del testo */
+  }
+
+  .main {
+    padding: 15px; /* Modifica il padding principale */
+  }
+}

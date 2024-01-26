@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+
+
+<!-- ----------------- HEAD ------------------- -->
+<head>
+
+	<!-- -- meta&link -- -->
+	<title>MailBox</title>
+    <meta name="description" content="CC – SUPSI 2022">
+    <meta name="keywords" content="Creative, Coding, SUPSI, 2023">
+    <meta name="web_author" content="Massimo Bordogna">
+    <meta name="copyright" content="Massimo Bordogna">
+    <meta name="author" content="Massimo Bordogna">
+    <meta charset="utf-8">
+	<meta name="copyright" content="2023">
+	<meta name="description" content="Finger Counting: pagina dedicata all'esplorazione del conteggio con le mani.">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="index.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+	<!-- -- /meta&link -- -->
+
+	<!-- -- CSS -- -->
+    <style>
+        *, *:before, *:after {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Roboto Mono', monospace;
+	font-weight: 100;
+	overflow: hidden;
+}
+
+/* Container for form section */
+.writer-container{
+	position: fixed;
+	background: whitesmoke;
+	overflow-y: scroll;
+	width: 100%;
+	height: 95%;
+	left: 0%;
+	bottom: 0;
+	padding-left: 100px;
+	padding-top: 10px;
+}
+
+/* Form in the section form */
+#campi{
+	font-weight: 900;
+	margin-left: -90px;
+}
+
+/* TextArea Style */
+  textarea {
+	width: 100%;
+	height: 150px;
+	padding: 5px 5px;
+	box-sizing: border-box;
+	border: solid 2px black;
+	font-family: 'Roboto Mono', monospace;
+	font-weight: 200;
+	font-size: 16px;
+	border-radius: 0px;
+	background-color: whitesmoke;
+	resize: none;
+	background-color: black;
+	color: white;
+  }
+
+  textarea:focus {
+	outline: none !important;
+	border-color: black;
+	background-color: black;
+	color: white;
+}
+
+/* Button Style */
+.button {
+	background-color: rgba(0, 0, 0, 0.0);
+	border: none;
+	color: white;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 25px;
+	/* margin: 4px 2px; */
+	cursor: pointer;
+	font-weight: 100;
+
+  }
+
+  .button:hover {
+	background-color: whitesmoke;
+	border: none;
+	color: black;
+  }
+
+  /* Navbar Style */
+.navbar{
+	font-size: 25px;
+	font-weight: 100;
+	line-height: 1.5;
+	position: fixed;
+	width: 100%;
+	background-color: black;
+	border-bottom: solid 13px whitesmoke;
+	height: 6%;
+	margin-top: -0.5%;
+	margin-bottom: -0.4%;
+	margin-left: -0.7%;
+	margin-right: -0.4%;
+	padding-left: 10px;
+	padding-right: 5px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	left: 0.7%;
+}
+
+
+
+/* Send Button */
+#send{
+	position: fixed;
+	right: 1%;
+	top: 0.6%;
+}
+
+a:link {
+	text-decoration: none;
+	color: whitesmoke;
+}
+
+a:visited {
+	text-decoration: none;
+	color: whitesmoke;
+}
+
+a:hover {
+	text-decoration: none;
+	color: black;
+	background-color: whitesmoke;
+	font-weight: 900;
+}
+
+.menu {
+	font-size: 25px;
+	font-weight: 100;
+	text-decoration: none;
+	color: whitesmoke;
+}
+
+.menu:hover {
+	text-decoration: none;
+	text-decoration: none;
+	color: black;
+	background-color: whitesmoke;
+	font-weight: 900;
+}
+
+
+#attuale {
+	color: black;
+	background-color: whitesmoke;
+	font-weight: 900;
+}
+
+
+p {
+	/*max-width: 30em;*/
+	font-weight: 100;
+	font-size: 16px;
+	margin:0px;
+	display: inline;
+	line-height: 20px;
+}
+
+
+#emailTo{
+	height: 500px;
+}
+
+      </style>
+<!-- -- /CSS -- -->
+
+</head>
+<!-- ----------------- /HEAD ------------------- -->
+
+
+	<!-- -- NAVBAR -- -->
+    <div class="navbar">
+		<a id="attuale"  href="write">WRITE</a>
+		<a class="menu" href="inbox">INBOX</a>
+		<a class="menu" href="spam">SPAM</a>
+		<a class="menu" href="sent">SENT</a>
+		<a class="menu" href="draft">DRAFT</a>
+		<a class="menu" href="bin">BIN</a>
+		<p  id="send"> <button id="luminosityminus" class="button" onclick="clearTextArea()" type="button">    SEND </button></p>
+	</div>
+	<!-- -- /NAVBAR -- -->
+
+<!-- ----------------- BODY ------------------- -->
+<body>
+
+
+
+	<!-- -- SECTION_FORM_WRITE -- -->
+			<div class="writer-container">
+				<form id="campi">
+					<label id="To" for="fname">To:</label> <div style="padding-left:5px; background-color: black; color:white; height: 25px; width: 20%; border-bottom: solid black 2px;"><p id="emailTo">&nbsp</p></div>
+
+					<br><br>
+					<!-- CC -->
+
+					<label id="Cc" for="lname">Cc:</label> <div style="padding-left:5px; background-color: black; color:white; width: 20%; height: 25px; border-bottom: solid black 2px;"><p id="emailCc">&nbsp</p></div>
+					
+					<br><br>
+
+					<!-- OGGETTO -->
+					<label id="Oggetto" for="lname">Object:</label> <div style="padding-left:5px; background-color: black; color:white; width: 20%; height: 25px; border-bottom: solid black 2px;"> <p id="emailOggetto">&nbsp</p></div>
+					
+					<br><br>
+
+					<!-- MITTENTE -->
+					<label id="From" for="lname">From:</label> <div style="padding-left:5px; background-color: black; color:white; width: 20%; border-bottom: solid black 2px;"><p id="emailFrom">myself@email.com</p></div>
+					
+					<br><br>
+					
+					<!-- ALLEGATI -->
+					<label for="lname">Files:</label> 
+					<input type="file" id="fileInput" name="lname"><br><br>
+					
+					<!-- TESTO -->
+					<label for="lname">Text:</label> <br>
+					<form>
+						<textarea  id="textarea">Write here...</textarea>
+					  </form>
+					
+					
+				  </form>
+
+			</div>
+	<!-- -- /SECTION_FORM_WRITE -- -->
+
+</body>
+<!-- ----------------- /BODY ------------------- -->
+
+
+<!-- ----------------- LINKS_SCRIPT ------------------- -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.3/socket.io.js"></script>
+
+
+<!-- ----------------- SCRIPT ------------------- -->
+<script>
+	// cost to call the button used to send the email
+const send = document.getElementById("send");
+
+//--------- CLEAR_TEXT_AREA----------
+//This function contains various operations: 
+// 	- it uses the countLetters function to count the number of letters written in the textArea
+// 	- it sets the number of files attached to 0
+//	- it creates 4 different contitions of email sent with the corrisponding output
+//		- if the number of letters written is less than 100 and there is no file attached, it calls the message "luminosityminus" which (coded in node.js) lower the luminosity of the screen by 1 level
+//		- if the number of letters written is more than 100 and there is no file attached, it calls the message "circle" which (coded in node.js) forces the mouse into a circular movement for 15 seconds simulating a loading
+//		- if the number of letters written is less than 100 and there is at least a file attached, it calls 7 times the message "luminosityminus" which (coded in node.js) lower the luminosity of the screen by 1 step (in this case by 7 steps)
+//		- if the number of letters written is more than 100 and there is at least a file attached, it calls the message "circlelum" which (coded in node.js) create a random mouse movement around the screen alternating with a random change in brightness tending towards the negative
+
+function clearTextArea() {
+	const textAreaValue = document.getElementById('textarea').value;
+    const letterCount = countLetters(textAreaValue);
+    console.log(`Number of letters in the text area: ${letterCount}`);
+	let socket = io();
+	const fileInput = document.getElementById('fileInput');
+    let selectedFile = fileInput.files[0];
+
+
+      if (letterCount > 100 && !selectedFile) {
+		socket.emit('message', 'circle');
+		console.log("1")
+
+      }
+	  else if (letterCount > 100 && selectedFile){
+		socket.emit('message', 'circlelum');
+		console.log("2")
+	  }
+
+	  else if (letterCount < 100 && selectedFile){
+		socket.emit('message', 'luminosityminus');
+		socket.emit('message', 'luminosityminus');
+		socket.emit('message', 'luminosityminus');
+		socket.emit('message', 'luminosityminus');
+		socket.emit('message', 'luminosityminus');
+		socket.emit('message', 'luminosityminus');
+		socket.emit('message', 'luminosityminus');
+		console.log("3")
+	  }
+
+	  else if (letterCount < 100 && !selectedFile){
+		socket.emit('message', 'luminosityminus');
+		console.log("4")
+	  }
+
+      document.getElementById('textarea').value = '';
+
+
+
+//Const related to the form section
+const paragraphTo = document.getElementById("emailTo");
+const paragraphOggetto = document.getElementById("emailOggetto");
+const paragraphCc = document.getElementById("emailCc");
+
+//deletes texts inside form section
+			paragraphTo.textContent = "";
+			paragraphOggetto.textContent = "";
+			paragraphCc.textContent = "";      
+    }
+ 
+//--------- COUNT_LETTERS----------
+//This function counts the number of letters written in the TextArea
+
+    function countLetters(text) {
+      // Use a regular expression to count letters (assuming English alphabet)
+      const letterRegex = /[a-zA-Z]/g;
+      const matches = text.match(letterRegex);
+      return matches ? matches.length : 0;
+    }
+
+//--------- FORM ----------
+//Const related to the form section
+const paragraphTo = document.getElementById("emailTo");
+const paragraphOggetto = document.getElementById("emailOggetto");
+const paragraphCc = document.getElementById("emailCc");
+
+//When the element is clicked it writes a fake email inside the emailTo paragraph
+To.addEventListener("click", function () {
+			paragraphTo.textContent = "santiago.lui@email.com";
+})
+
+//When the element is clicked it writes a fake email inside the emailOggetto paragraph
+Oggetto.addEventListener("click", function () {
+			paragraphOggetto.textContent = "Object of the desired message";
+})
+
+//When the element is clicked it writes a fake email inside the emailCc paragraph
+Cc.addEventListener("click", function () {
+			//const paragraphCc = document.getElementById("emailCc");
+			paragraphCc.textContent = "stefano33@email.com";
+})
+</script>
+
+</html>

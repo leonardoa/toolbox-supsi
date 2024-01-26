@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "custom-cursor": "^2.2.3",
+    "express": "^4.17.1",
+    "robotjs": "^0.6.0",
+    "socket.io": "^4.1.2"
+  }
+}

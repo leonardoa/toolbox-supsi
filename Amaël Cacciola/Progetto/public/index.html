@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="src/style.css" rel="stylesheet" />
+  <title>HelpDoorBell©</title>
+  <style>
+
+  </style>
+</head>
+  
+<audio id="sound" src="src/sound/campanello.mp3" type="audio/mpeg" preload="auto"></audio>
+<audio id="sound1" src="src/sound/pacco.mp3" type="audio/mpeg" preload="auto"></audio>
+<audio id="sound2" src="src/sound/brobirra.mp3" type="audio/mpeg" preload="auto"></audio>
+
+
+<body>
+  <header class="header">
+    <h1 class="title">Press The Doorbell</h1>
+  </header>
+  <main class="main">
+    <section class="camera-section">
+      <div class="camera-container">
+        <video id="videoElement" autoplay></video>
+        <canvas id="canvas"></canvas>
+      </div>
+    </section>
+    <section class="horizontal-line">
+      <p class="horizontal-text">Amaël cacciola</p>
+      <p class="horizontal-text">Creative Coding</p>
+      <p class="horizontal-text">DoorBellProject</p>
+      <p class="date-time">
+        <p class="date-text">Date and Time:</p>
+        <p id="dateTimeValue"></p>
+      </div>
+    </section>
+  </main>
+  <script>
+
+    
+    const socket = new WebSocket('ws://localhost:3000/');
+    let isBlack = false;
+    let audio = new Audio("src/sound/campanello.mp3");
+    let audio1 = new Audio("src/sound/pacco.mp3");
+    let audio2 = new Audio("src/sound/brobirra.mp3");
+    let video = document.getElementById('videoElement');
+    let canvas = document.getElementById('canvas');
+    let ctx = canvas.getContext('2d');
+
+
+//se riceve il messaggio da arduino "pulsante premuto" avvia il suono e la videocamera. 
+socket.addEventListener('message', async function (event) {
+      const message = event.data.trim();
+
+      if (message === 'Pulsante premuto!') {
+        console.log('Pulsante premuto! Avvia il suono e la videocamera.');
+        await playSound();
+        await startCamera();
+      } else if (message === 'birra') {
+    // Attiva la riproduzione del suono "brobirra.mp3"
+    const audio1 = document.getElementById('sound1');
+    const audio2 = document.getElementById('sound2');
+
+    // Mette in pausa altri suoni se sono in riproduzione
+    audio1.pause();
+    audio1.load();
+
+    // Avvia il suono di "brobirra.mp3"
+    audio2.play();
+  } else {
+
+      }
+      console.log('errorrr')
+    });
+
+
+
+
+    async function startCamera() {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        video.srcObject = stream;
+      } catch (err) {
+        console.error('Errore durante l\'avvio della videocamera:', err);
+      }
+    }
+
+
+
+    async function playSound() {
+      try {
+        await audio.play();
+      } catch (err) {
+        console.error('Errore durante la riproduzione del suono:', err);
+      }
+    }
+
+    // Mostra il video sopra canvas
+    video.addEventListener('play', function () {
+      const width = canvas.width;
+      const height = canvas.height;
+
+      function drawFrame() {
+        if (video.paused || video.ended) {
+          return;
+        }
+        ctx.drawImage(video, 0, 0, width, height);
+        requestAnimationFrame(drawFrame);
+      }
+      drawFrame();
+    });
+
+    
+//impostazioni colori effetti sulla fotocamera per dire se puoi entrare o no, verde o rosso. 
+
+    function toggleCameraColor(color) {
+  const cameraContainer = document.querySelector('.camera-container');
+  cameraContainer.classList.remove('green-filter', 'red-filter');
+
+  if (color === 'green') {
+    cameraContainer.classList.add('green-filter');
+  } else if (color === 'red') {
+    cameraContainer.classList.add('red-filter');
+  }
+}
+
+    function drawResult(result) {
+  const audio = document.getElementById('sound');
+  const audio1 = document.getElementById('sound1');
+  const audio2 = document.getElementById('sound2');
+
+  if (result === 'normale') {
+    audio1.pause();
+    audio1.load();
+    audio2.pause();
+    audio2.load();
+  } else if (result === 'pacco') {
+    audio1.play();
+    audio2.pause();
+    audio2.load();
+  } else if (result === 'ciao') {
+    audio2.play();
+    audio1.pause();
+    audio1.load();
+    console.log('ciao');
+  }
+
+  if (result === 'normale') {
+    toggleCameraColor('red'); // Imposta il filtro rosso per la telecamera
+ 
+  } else if (result === 'pacco' || result === 'ciao') {
+    toggleCameraColor('green'); // Imposta il filtro verde per la telecamera
+  
+  }
+
+  console.log(result);
+}
+
+
+
+
+
+    //data e ora
+    function updateDateTime() {
+  const now = new Date();
+  const dateTimeElement = document.getElementById('dateTimeValue');
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', timeZoneName: 'short' };
+  dateTimeElement.textContent = now.toLocaleDateString('en-US', options);
+}
+
+// Aggiorna ogni secondo
+setInterval(updateDateTime, 1000);
+
+
+
+
+  </script>
+  <script src="src/libs/p5.js"></script>
+  <script src="src/libs/ml5.js"></script>
+  <script src="src/init-image.js"></script>
+  <!-- <script src="src/server.js"></script> -->
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Massimo Bordogna – Mail CO2</title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description"
+        content="Repository for the 2023 course toolbox for SUPSI Bachelor of Arts SUPSI in Visual communication">
+    <meta name="keywords" content="">
+    <meta name="language" content="english">
+    <meta name="web_author" content="Massimo Bordogna">
+    <meta name="copyright" content="Massimo Bordogna">
+    <link rel="icon" href="src/img/fav.png">
+    <link href="src/readme.css" rel="stylesheet" />
+
+    </style>
+</head>
+
+<body>
+    <div id="back">
+        <a href="https://github.com/leonardoa/toolbox-supsi">Back</a>
+    </div>
+    <div id="wrapper">
+        <h1>Massimo Bordogna<br />
+            Mail CO2</h1>
+        <p class="abstract">
+            Every day millions of people send large quantities of e-mails without realising the climate impact of their actions. In fact, each email sent, depending on the weight and length of the content, consumes a certain amount of CO2 which, when viewed on a global scale, reaches significant numbers. This tool represents an email management platform that makes users aware of the CO2 consumption resulting from sending emails.
+            <br> <br> The result is obtained by giving some feedback depending on the weight of the email sent, the feedback interact with the computer system making the user experience slower, more unpleasant or annoying in order to raise awareness of the issue of CO2 production via e-mail.
+        </p>
+        <ul>
+            <li><a href="https://github.com/leonardoa/play-pause-rewind-shuffle/tree/main/giada-vegliante">Link Github</a></li>
+        </ul>
+        <h1 class="title">THE TOOL</h1>
+        <video  autoplay muted loop>
+            <source src="src/video/promo/video_promo.mp4" type="video/mp4" mute>
+        </video>
+
+        <h1 class="title">PAGES OVERVIEW</h1>
+        <div class="images">
+            <img src="src/img/version_1.2/page_write.png" alt="immagine" />
+            <img src="src/img/version_1.2/page_bin.png" alt="immagine" />
+            <img src="src/img/version_1.2/page_draft.png" alt="immagine" />
+            <img src="src/img/version_1.2/page_inbox.png" alt="immagine" />
+            <img src="src/img/version_1.2/page_sent.png" alt="immagine" />
+            <img src="src/img/version_1.2/page_spam.png" alt="immagine" />
+        </div>
+
+        <h1 class="title">SKETCHES AND CONTENTS</h1>
+        <p>
+            To start I firstly made a list of the minimun contents I had to insert in my layout:<br>
+            - Pages <br>
+            &nbsp&nbsp&nbsp - Write <br>
+            &nbsp&nbsp&nbsp - Inbox <br>
+            &nbsp&nbsp&nbsp - Spam <br>
+            &nbsp&nbsp&nbsp - Sent <br>
+            &nbsp&nbsp&nbsp - Bin <br>
+            &nbsp&nbsp&nbsp - Draft <br>
+            - Buttons <br>
+            &nbsp&nbsp&nbsp - Send (email) <br>
+            &nbsp&nbsp&nbsp - Empty (bin) <br><br>
+            
+            After that I made a couple of sketches to try two different layout and to understand where to place the elements inside it.
+        </p>
+        <div class="images">
+            <img style="width: 100%; border: solid 1px black;" src="src/img/sketch/CC_sketch_1.jpg" alt="immagine" />
+            <img style="width: 100%; border: solid 1px black;" src="src/img/sketch/CC_sketch_2.jpg" alt="immagine" />
+        </div>
+        <h1 class="title">FIGMA</h1>
+        <p>
+            After a couple of manual sketches I digitalized them and using Figma I inserted some fake text to simulate the structure and the contents of the prototype.
+        </p>
+        <div class="images">
+            <img src="src/img/figma/figma_1.1.png" alt="immagine" />
+            <img src="src/img/figma/figma_1.2.png" alt="immagine" />
+            <img src="src/img/figma/figma_2.1.png" alt="immagine" />
+            <img src="src/img/figma/figma_1.2.png" alt="immagine" />
+            <img src="src/img/figma/figma_3.1.png" alt="immagine" />
+            <img src="src/img/figma/figma_3.2.png" alt="immagine" />
+            <img style="width: 100%; border: solid 1px black;" src="src/img/figma/figma_2.2.png" alt="immagine" />
+            <img style="width: 100%; border: solid 1px black;" src="src/img/figma/figma_1.1.png" alt="immagine" />
+        </div>
+        <h1 class="title">BASE CODE</h1>
+        <p>
+            The interaction between the code and the computer system is reached thanks to a javascrpit library calld RobotJS, to start my project I had a simple base code with 5 interactions.<br><br> 
+            In particular there are 5 buttons which, if clicked, will trigger a code that, exploiting the external library RobotJS, will interact with the system of the computer giving back different outputs. <br><br> 
+            The following code for example is the one that describes the movement as a sine wave that the mouse arrow does when the button "mouse" is clicked. 
+        </p>
+        <p style="background-color: whitesmoke; font-family: monospace;">
+            // Move the mouse across the screen as a sine wave.<br>
+            if (msg == "on") {<br>
+                // Speed up the mouse.<br>
+                robot.setMouseDelay(2);<br>
+                <br>
+                var twoPI = Math.PI * 2.0;<br>
+                var screenSize = robot.getScreenSize();<br>
+                var height = screenSize.height / 2 - 10;<br>
+                var width = screenSize.width;<br>
+                <br>
+                for (var x = 0; x < width; x++) {<br>
+                  y = height * Math.sin((twoPI * x) / width) + height;<br>
+                  robot.moveMouse(x, y);<br>
+                }
+          
+        </p>
+<br>
+        <p>
+            The two following videos show all five different interactions with the computer system present in the base code I used:<br>
+            - mouse (mouse sine wave movement) <br>
+            - luminosity +<br>
+            - luminosity -<br>
+            - mute/unmute<br>
+            - circle (mouse movement)<br>
+        </p>
+        <video style="border: solid 1px black;"  autoplay muted loop>
+            <source src="src/video/base_code/video_base_code.mp4" type="video/mp4" mute>
+        </video>
+        <video style="border: solid 1px black;"  autoplay muted loop>
+            <source src="src/video/base_code/screen_record_base_code.mov" type="video/mp4" mute>
+        </video>
+        <h1 class="title">FIRST VERSION</h1>
+        <p>
+            The first version of the prototypen is the merge between the base code and the figma layout. There are two main layouts: the one to send emails and the one that stores them. 
+            When you send an email you'll surely produce some CO2 so the output in this page is always negative. The pages that stores emails (inbox, draft, bin, ...) produces CO2 simply keeping them saved so, when you 
+            delete some of them you reduce the pollution so the output is positive. 
+            <br><br>
+            More precisely in this first version, if you send a light email the output will be an annoying mouse movement for a few seconds,
+            if you send an heavy email (so a lot of pollution) the output will be the mouse movement and the reduction of the screen luminosity (reducing the energy consumed by the computer). 
+            If you delete a stored email the screen luminosity will increase, for each email deleted it increases by one step.
+        </p>
+        <div class="images">
+            <img style="width: 49%; border: solid 1px black;" src="src/img/version_1.1/page_write.png" alt="immagine" />
+            <img style="width: 49%; border: solid 1px black;" src="src/img/version_1.1/page_inbox.png" alt="immagine" />
+        </div>
+        <video style="border: solid 1px black;"  autoplay muted loop>
+            <source src="src/video/version_1.1/video_v1.1.mp4" type="video/mp4" mute>
+        </video>
+        <video style="border: solid 1px black;"  autoplay muted loop>
+            <source src="src/video/version_1.1/general_video.mov" type="video/mp4" mute>
+        </video>
+        <h1 class="title">FINAL VERSION</h1>
+        <p>
+            The final version presents some little improvements in the layout and 4 different levels of outputs depending on the weight of the email sent:<br>
+            1 an email with a small text and no file attached will produce an instant reduction of the screen <br> &nbsp&nbsp  luminosity by one step <br>
+            2 an email with a long text and no file attached will force the mouse in a circolar movement for 15 <br> &nbsp&nbsp seconds, simulating a loading output that forces the user to pause his activity <br>
+            3 an email with a small text and at least one file attached will produce a gradual reduction of the <br> &nbsp&nbsp screen luminosity by seven steps <br>
+            4 an email with a long text and at least one file attached will produce a random change of the <br> &nbsp&nbsp screen luminosity (generally negative) and a random mouse movement that forces the user to <br> &nbsp&nbsp pause his activity for a certain amount of time <br>
+        </p>
+        <div class="images">
+            <img style="width: 49%; border: solid 1px black;" src="src/img/version_1.2/page_write.png" alt="immagine" />
+            <img style="width: 49%; border: solid 1px black;" src="src/img/version_1.2/page_bin.png" alt="immagine" />
+        </div>
+        <br>
+        <p>
+            In this example there is the code that forces the mouse to move in a circle path for 15 seconds when triggered:
+        </p>
+
+        <p style="background-color: whitesmoke; font-family: monospace;">
+            else if (msg == "circle") {<br>
+                robot.setMouseDelay(10);<br>
+                const screenSize = robot.getScreenSize();<br>
+                const height = screenSize.height;<br>
+                const width = screenSize.width;<br>
+                let elapsedTime = 0;<br>
+                <br>
+                function moveMouseInCircle() {<br>
+                  const centerX = Math.floor(width / 2); // Center X coordinate<br>
+                  const centerY = Math.floor(height / 2); // Center Y coordinate<br>
+                  const radius = 150; // Radius of the circle<br>
+                  const speed = 5; // Speed of the mouse movement (adjust as needed)<br>
+                  <br>
+                  const angle = (elapsedTime / 1000) * speed; // Angle increases over time<br>
+                  const x = centerX + Math.floor(radius * Math.cos(angle));<br>
+                  const y = centerY + Math.floor(radius * Math.sin(angle));<br>
+                  <br>
+                  robot.moveMouse(x, y);<br>
+                  <br>
+                  if (elapsedTime < 15000) { // Run for 30 seconds (30000 milliseconds)<br>
+                    elapsedTime += 50; // Increase elapsed time by 50 milliseconds for each movement<br>
+                    setTimeout(moveMouseInCircle, 50); // Call the function again after 50 milliseconds<br>
+                  }<br>
+                }<br>
+                <br>
+                // Call the function to start moving the mouse in a circle<br>
+                moveMouseInCircle();  <br>
+              }<br>
+          
+        </p>
+<br>
+        <p>
+            And this is the result:
+        </p>
+
+        <video style="border: solid 1px black;" autoplay muted loop>
+            <source src="src/video/version_1.2/screen_1_record_v1.2.mov" type="video/mp4" mute>
+        </video>
+        <br><br>
+        <p>
+            The following one is the code that recognize the weight of the email and triggers the corrisponding message:
+        </p>
+        <p style="background-color: whitesmoke; font-family: monospace;">
+            if (letterCount > 100 && !selectedFile) {<br>
+                socket.emit('message', 'circle');<br>
+                console.log("1")<br>
+              }<br>
+              <br>
+              else if (letterCount > 100 && selectedFile){<br>
+                socket.emit('message', 'circlelum');<br>
+                console.log("2")<br>
+              }<br>
+              <br>
+              else if (letterCount < 100 && selectedFile){<br>
+                socket.emit('message', 'luminosityminus');<br>
+                socket.emit('message', 'luminosityminus');<br>
+                socket.emit('message', 'luminosityminus');<br>
+                socket.emit('message', 'luminosityminus');<br>
+                socket.emit('message', 'luminosityminus');<br>
+                socket.emit('message', 'luminosityminus');<br>
+                socket.emit('message', 'luminosityminus');<br>
+                console.log("3")<br>
+              }<br>
+              <br>
+              else if (letterCount < 100 && !selectedFile){<br>
+                socket.emit('message', 'luminosityminus');<br>
+                console.log("4")<br>
+              }<br>
+          
+        </p>
+        <br>
+        <p>
+            Here you can see the output in the 4th scenario, the heaviest email produces a random change of the screen luminosity (generally negative) 
+            alternated by a random mouse movement around the screen:
+        </p>
+        <video style="border: solid 1px black;" autoplay muted loop>
+            <source src="src/video/version_1.2/video_1_v1.2.mp4" type="video/mp4" mute>
+        </video>
+        <video style="border: solid 1px black;" autoplay muted loop>
+            <source src="src/video/version_1.2/screen_2_record_v1.2.mov" type="video/mp4" mute>
+        </video>
+        <br>
+        <p>
+            If you delete an email stored in the bin page for example, it is a positive action for the CO2 consumption and the corresponding output is the increase of the screen luminosity by 1 step for each email deleted:
+        </p>
+        <video style="border: solid 1px black;" autoplay muted loop>
+            <source src="src/video/version_1.2/video_2_v1.2.mp4" type="video/mp4" mute>
+        </video>
+        <video style="border: solid 1px black;" autoplay muted loop>
+            <source src="src/video/version_1.2/screen_3_record_v1.2.mov" type="video/mp4" mute>
+        </video>
+        <!-- END SECTION-->
+
+        <h1 class="title">VIDEO PROMO BACKSTAGE</h1>
+        <p>
+            A video promo to show the result has been made, these are some backstage images of the set:
+        </p>
+        <div class="images">
+            <img style="width: 49%; border: solid 1px black;" src="src/img/video_bst/FullSizeRender 10.HEIC" alt="immagine" />
+            <img style="width: 49%; border: solid 1px black;" src="src/img/video_bst/FullSizeRender 8.HEIC" alt="immagine" />
+            <img style="width: 100%; border: solid 1px black;" src="src/img/video_bst/FullSizeRender 4.HEIC" alt="immagine" />
+            
+        </div>
+        <!-- START FOOTER (Do not delete!)-->
+        <footer>
+            <p>Repository for the 2023 course toolbox for SUPSI Bachelor of Arts SUPSI in Visual
+                communication. <br/>© 2023-2024
+            </p>
+        </footer>
+    </div>
+</body>
+
+</html>

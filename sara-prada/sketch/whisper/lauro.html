@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CC - Sara Prada - WHISPER</title>
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="CC – SUPSI 2023">
+    <meta name="keywords" content="Creative, Coding, SUPSI, 2023">
+    <meta name="web_author" content="Sara Prada">
+    <meta name="copyright" content="Sara Prada">
+    <link href="src/style.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.1/axios.min.js"></script>
+</head>
+
+<body>
+    <section id="container">
+        <img id="sfondo" src="src/img/sfondo.png"></img>
+        <div id="rettangolo">
+            <a href="index.html">
+                <div class="indietro">
+                    <svg width="10" height="19" viewBox="0 0 10 19" fill="none">
+                        <path d="M9.5 1L1 9.5L9.5 18" stroke="#959595" />
+                    </svg>
+                </div>
+                </a>
+            <div class="messaggio">
+                <div class="chat">
+                    <div class="colonna-immagine">
+                        <img id="giulia2" src="src/img/lauro.jpeg"></img>
+                    </div>
+                    <div class="colonna-nome">
+                        <p class="nome">Lauro🦕</p>
+                        <p class="lorem">online</p>
+                    </div>
+                </div>
+            </div>
+            <div class="colonna-orario2" style="float: left; margin-left: 43%;">
+                <p class="ora" style="font-size: 12px;">Today</p>
+            </div>
+            <!-- <form action="/submit_page" method="post">
+                <label for="testo">Inserisci del testo:</label><br>
+                <input type="text" id="testo" name="testo"><br>
+                <input type="submit" id="invia" value="Invia">
+              </form> -->
+            <div class="input-container">
+                <textarea id="message-input" placeholder="Message" rows="4" cols="50"></textarea>
+                <button id="send-button">
+                    <img src="src/img/arrow.png" alt="Freccia" width="20px" height="auto" margin= "auto">
+                </button>
+            </div>
+
+            <p id="static-response1">serpente confuso ondeggiava osservando prudentemente ? </p>
+            <!-- <p id="static-response2" style="margin-top: 0px;">🙀🙀🙀🙀🙀🙀</p> -->
+
+           
+        
+                <p id="response"></p>
+                <p id="status"></p>
+                <p id="history"></p>
+            <script src="script.js"></script>
+            <script src="message-lauro.js"></script>
+        </div>
+    </section>
+</body>
+
+</html>
