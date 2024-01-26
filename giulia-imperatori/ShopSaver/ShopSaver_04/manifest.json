@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "ShopSaver04",
+  "version": "1.0",
+  "description": "A simple extension that changes the images",
+  "action": {
+    "default_popup": "index.html"
+    
+  },
+
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
+
+  "icons": {
+    "16": "assets/img/icon.png",
+    "32": "assets/img/icon.png",
+    "48": "assets/img/icon.png",
+    "128": "assets/img/icon.png"
+  }
+}

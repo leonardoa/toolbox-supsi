@@ -1,0 +1,52 @@
+button {
+  font-family: sans-serif;
+  margin-top: 5px;
+  background-color: blue;
+  color: white;
+  font-size: 16px;
+  outline: 0;
+  border: 0;
+  border-radius: 5%;
+  padding: 10px;
+}
+
+body {
+  width: 180px;
+  font-family: sans-serif;
+  margin-top: 5px;
+  background-color: rgb(255, 255, 255);
+  outline: 0;
+  border: 0;
+}
+
+.heading {
+  /* Styles for the first <p> element */
+  font-size: 24px;
+  color: #333;
+}
+
+.sub-heading {
+  /* Styles for the second <p> element */
+  font-size: 18px;
+  font-style: italic;
+}
+
+.version {
+  /* Styles for the third <p> element */
+  font-size: 18px;
+  color: blue;
+}
+
+/* Common styles for all <p> elements with class custom-font */
+.custom-font {
+  font-family: 'sans-serif', sans-serif;
+}
+
+body {
+  width: 180px;
+  font-family: sans-serif;
+  margin-top: 5px;
+  outline: 0;
+  border: 0;
+  transition: background-color 0.2s ease; /* Add transition for smooth color change */
+}
